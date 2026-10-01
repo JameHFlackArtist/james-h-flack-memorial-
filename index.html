@@ -242,15 +242,7 @@
       <figcaption>Portrait of Jim Flack</figcaption>
     </figure>
     <figure>
-      <img src="photos/jim-flack-holding-picture.jpg" alt="Jim Flack holding one of his paintings">
-      <figcaption>Jim holding one of his paintings</figcaption>
-    </figure>
-    <figure>
       <img src="photos/jim-flack-exhibition-1.jpg" alt="Jim Flack at an exhibition">
-      <figcaption>At an exhibition</figcaption>
-    </figure>
-    <figure>
-      <img src="photos/jim-flack-exhibition-2.jpg" alt="Jim Flack at an exhibition">
       <figcaption>At an exhibition</figcaption>
     </figure>
   </div>
@@ -260,6 +252,7 @@
 <section id="gallery" class="centre">
   <h2>Gallery of Watercolours</h2>
   <div class="gallery">
+    <figure><img src="photos/painting-stone-window-red-gate.jpg" alt="Watercolour of a view through a stone window with a red gate, signed J.H. Flack" loading="lazy"><figcaption>Painted for Stephen — from his personal collection</figcaption></figure>
     <figure><img src="photos/painting-grasses-daisies-butterfly.jpg" alt="Watercolour of grasses, daisies and a butterfly" loading="lazy"><figcaption>Grasses, daisies and a butterfly</figcaption></figure>
     <figure><img src="photos/painting-pink-blossom.jpg" alt="Watercolour of pink blossom" loading="lazy"><figcaption>Pink blossom</figcaption></figure>
     <figure><img src="photos/painting-woodland-path.jpg" alt="Watercolour of a woodland path" loading="lazy"><figcaption>Woodland path</figcaption></figure>
@@ -276,8 +269,6 @@
     <figure><img src="photos/painting-tall-trees.jpg" alt="Watercolour of tall trees" loading="lazy"><figcaption>Tall trees</figcaption></figure>
     <figure><img src="photos/painting-green-woodland.jpg" alt="Watercolour of green woodland" loading="lazy"><figcaption>Green woodland</figcaption></figure>
     <figure><img src="photos/painting-cloudy-sky-landscape-1.jpg" alt="Watercolour landscape under a cloudy sky" loading="lazy"><figcaption>Landscape under a cloudy sky</figcaption></figure>
-    <figure><img src="photos/painting-cloudy-sky-landscape-2.jpg" alt="Watercolour of clouds over the countryside" loading="lazy"><figcaption>Clouds over the countryside</figcaption></figure>
-    <figure><img src="photos/jim-flack-cover-photo-bog-landscape.jpg" alt="Watercolour of a bog landscape under a cloudy sky" loading="lazy"><figcaption>Bog landscape under a cloudy sky</figcaption></figure>
   </div>
   <p class="note">The captions above are descriptive only &mdash; the original titles of most works are not recorded. Click any image to view it full-screen.</p>
 </section>
@@ -338,6 +329,7 @@
 <script>
 (function(){
   var lb=document.getElementById('lightbox'),
+      lbImg=lb.querySelector('img'),
       lbImg=lb.querySelector('img'),
       lbCap=lb.querySelector('p');
   document.querySelectorAll('.gallery figure, .press-grid figure').forEach(function(fig){
