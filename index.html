@@ -164,7 +164,7 @@
     background:#fff;border:1px solid var(--line);border-radius:4px;
     margin-bottom:.7rem;padding:.85rem 1.1rem;
     display:flex;gap:.9rem;align-items:baseline;
-  }e
+  }
   .pdf-list li:hover{border-color:var(--accent)}
   .pdf-list a{font-size:1.02rem;text-decoration:none}
   .pdf-list a:hover{text-decoration:underline}
@@ -186,6 +186,19 @@
   #lightbox.open{display:flex}
   #lightbox img{max-width:94vw;max-height:86vh;object-fit:contain;border:8px solid #fff;border-radius:2px}
   #lightbox p{color:#e8e2d4;margin-top:.9rem;font-style:italic;font-size:.95rem;text-align:center;padding:0 1rem}
+  /* zoomed view: image grows to a real pixel size and the viewer scrolls so you can pan around it */
+  #lightbox.open.zoomed{display:block;overflow:auto;cursor:default}
+  #lightbox.zoomed img{max-width:none;max-height:none;height:auto;display:block;margin:3.4rem auto .5rem;cursor:grab}
+  /* magnifier button, visible only while the lightbox is open */
+  #zoomBtn{
+    display:none;position:fixed;top:.9rem;right:.9rem;z-index:101;
+    min-width:3rem;height:3rem;padding:0 .6rem;border-radius:1.5rem;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
+    color:#fff;font-size:1.15rem;line-height:1;cursor:pointer;
+    align-items:center;justify-content:center;gap:.3rem;
+  }
+  #zoomBtn:hover{background:rgba(255,255,255,.28)}
+  #lightbox.open + #zoomBtn{display:flex}
   /* ---------- footer ---------- */
   footer{
     background:#24211c;color:#cfc7b8;
@@ -198,7 +211,7 @@
 </head>
 <body>
 
-<!-- Digital archive curated and maintained by Stephen W. Geddes, godson of the artist. Created October 2026. -->
+<!-- Digital archive curated and maintained by Stephen Geddes, godson of the artist. Created October 2026. -->
 
 <header class="hero">
   <div class="hero-inner">
@@ -331,18 +344,38 @@
 </footer>
 
 <div id="lightbox"><img src="" alt=""><p></p></div>
+<button id="zoomBtn" title="Zoom in" aria-label="Zoom image">&#128269;</button>
 
 <script>
 (function(){
   var lb=document.getElementById('lightbox'),
       lbImg=lb.querySelector('img'),
       lbCap=lb.querySelector('p'),
-      pushed=false;
+      zoomBtn=document.getElementById('zoomBtn'),
+      pushed=false,
+      /* zoom steps: original, then three enlargements; one more click returns to original */
+      ZOOMS=[1,1.5,2.25,3],
+      zi=0, baseW=0;
 
+  function applyZoom(){
+    var z=ZOOMS[zi];
+    if(z===1){
+      lbImg.style.width='';
+      lb.classList.remove('zoomed');
+      zoomBtn.innerHTML='&#128269;';
+      zoomBtn.title='Zoom in';
+    }else{
+      lbImg.style.width=Math.round(baseW*z)+'px';
+      lb.classList.add('zoomed');
+      zoomBtn.innerHTML='&#128269; '+z+'&times;';
+      zoomBtn.title='Zoomed '+z+'x \u2014 click again to enlarge, resets after 3x';
+    }
+  }
   function openLb(img,cap){
     lbImg.src=img.src;
     lbImg.alt=img.alt;
     lbCap.textContent=cap?cap.textContent:'';
+    zi=0; baseW=0; applyZoom(); /* every picture opens at its original size */
     if(!lb.classList.contains('open')){
       lb.classList.add('open');
       document.body.style.overflow='hidden';
@@ -365,7 +398,21 @@
       openLb(img,cap);
     });
   });
-  lb.addEventListener('click',function(){ closeLb(false); });
+  zoomBtn.addEventListener('click',function(e){
+    e.stopPropagation(); /* the magnifier must not close the viewer */
+    var next=(zi+1)%ZOOMS.length;
+    if(next>0){
+      var w=baseW||lbImg.clientWidth||lbImg.naturalWidth||0;
+      if(!w){ return; } /* picture not rendered yet; try the next click */
+      baseW=w;
+    }
+    zi=next;
+    applyZoom();
+  });
+  lb.addEventListener('click',function(e){
+    if(e.target===lbImg && zi>0){ return; } /* let them scroll/pan the zoomed picture */
+    closeLb(false);
+  });
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){ closeLb(false); }
   });
