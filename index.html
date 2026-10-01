@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>James H. Flack (1941&ndash;2018) &mdash; Irish Watercolour Artist</title>
+<meta name="description" content="A memorial site for the Rev. James Hall Flack (23 December 1941 &ndash; 22 March 2018), noted Irish watercolour artist of Athy, County Kildare.">
+<style>
+  :root{
+    --paper:#faf6ee;
+    --ink:#2e2a24;
+    --soft:#6b6257;
+    --accent:#3f5a4c;
+    --accent-light:#e9efe9;
+    --line:#ddd3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:Georgia,'Times New Roman',serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+  }
+  a{color:var(--accent)}
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:62vh;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+    background:#1c1a16 url('photos/jim-flack-cover-photo-bog-landscape.jpg') center/cover no-repeat;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(20,18,14,.78) 0%,rgba(20,18,14,.25) 55%,rgba(20,18,14,.15) 100%);
+  }
+  .hero-inner{position:relative;z-index:1;padding:4rem 1.5rem 3rem;max-width:900px}
+  .hero h1{
+    font-size:clamp(2.2rem,6vw,3.6rem);
+    font-weight:normal;
+    letter-spacing:.04em;
+    margin-bottom:.4rem;
+    text-shadow:0 2px 12px rgba(0,0,0,.5);
+  }
+  .hero .dates{
+    font-size:clamp(1rem,2.6vw,1.3rem);
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    opacity:.92;
+  }
+  .hero .sub{
+    margin-top:.8rem;
+    font-style:italic;
+    font-size:clamp(1rem,2.4vw,1.2rem);
+    opacity:.9;
+  }
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,238,.96);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+    padding:.6rem .5rem;
+  }
+  nav a{
+    display:inline-block;
+    margin:0 .55rem;
+    padding:.25rem .4rem;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:.95rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-bottom:2px solid transparent;
+  }
+  nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  /* ---------- layout ---------- */
+  main{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+  section{padding:3rem 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  h2{
+    font-weight:normal;
+    font-size:1.9rem;
+    letter-spacing:.05em;
+    color:var(--accent);
+    margin-bottom:1.4rem;
+    text-align:center;
+  }
+  h2::after{
+    content:"";
+    display:block;
+    width:64px;height:2px;
+    background:var(--accent);
+    margin:.7rem auto 0;
+    opacity:.5;
+  }
+  p{margin-bottom:1rem;max-width:760px}
+  .centre p{margin-left:auto;margin-right:auto}
+  .centre{text-align:center}
+  .note{
+    font-size:.9rem;color:var(--soft);font-style:italic;
+    max-width:760px;margin:1.5rem auto 0;text-align:center;
+  }
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:2.2rem;
+    align-items:start;
+    max-width:960px;margin:0 auto;
+  }
+  .about-grid img{
+    width:100%;border-radius:4px;
+    box-shadow:0 6px 24px rgba(0,0,0,.18);
+    border:6px solid #fff;
+  }
+  .about-grid figcaption{
+    font-size:.85rem;color:var(--soft);font-style:italic;
+    margin-top:.5rem;text-align:center;
+  }
+  @media(max-width:720px){.about-grid{grid-template-columns:1fr}.about-grid figure{max-width:320px;margin:0 auto}}
+  /* ---------- galleries ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:1.1rem;
+  }
+  .gallery figure{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    cursor:zoom-in;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .gallery figure:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.14)}
+  .gallery img{width:100%;height:200px;object-fit:cover;display:block;background:#eee}
+  .gallery figcaption{
+    padding:.6rem .8rem;
+    font-size:.88rem;color:var(--soft);font-style:italic;
+    min-height:3.2em;
+  }
+  /* ---------- press ---------- */
+  .press-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:1.1rem;margin-bottom:2rem;
+  }
+  .press-grid figure{
+    background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;cursor:zoom-in;
+  }
+  .press-grid img{width:100%;height:340px;object-fit:cover;object-position:top;display:block;background:#eee}
+  .press-grid figcaption{padding:.6rem .8rem;font-size:.88rem;color:var(--soft);font-style:italic}
+  .pdf-list{list-style:none;max-width:760px;margin:0 auto}
+  .pdf-list li{
+    background:#fff;border:1px solid var(--line);border-radius:4px;
+    margin-bottom:.7rem;padding:.85rem 1.1rem;
+    display:flex;gap:.9rem;align-items:baseline;
+  }
+  .pdf-list li:hover{border-color:var(--accent)}
+  .pdf-list a{font-size:1.02rem;text-decoration:none}
+  .pdf-list a:hover{text-decoration:underline}
+  .pdf-list span{display:block;font-size:.88rem;color:var(--soft)}
+  .pdf-icon{font-size:1.3rem}
+  /* ---------- sources ---------- */
+  .sources{max-width:760px;margin:0 auto}
+  .sources ul{list-style:none}
+  .sources li{margin-bottom:.8rem;padding-left:1.2rem;position:relative}
+  .sources li::before{content:"\2014";position:absolute;left:0;color:var(--accent)}
+  .sources .dead{color:var(--soft);font-style:italic}
+  /* ---------- lightbox ---------- */
+  #lightbox{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(15,14,12,.94);
+    display:none;align-items:center;justify-content:center;
+    flex-direction:column;cursor:zoom-out;
+  }
+  #lightbox.open{display:flex}
+  #lightbox img{max-width:94vw;max-height:86vh;object-fit:contain;border:8px solid #fff;border-radius:2px}
+  #lightbox p{color:#e8e2d4;margin-top:.9rem;font-style:italic;font-size:.95rem;text-align:center;padding:0 1rem}
+  /* ---------- footer ---------- */
+  footer{
+    background:#24211c;color:#cfc7b8;
+    text-align:center;padding:2.6rem 1.25rem;
+    font-size:.95rem;
+  }
+  footer .ded{font-style:italic;font-size:1.1rem;color:#efe8d8;margin-bottom:.8rem}
+  footer a{color:#b9c9bb}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>The Rev. James Hall Flack</h1>
+    <div class="dates">23 December 1941 &ndash; 22 March 2018</div>
+    <div class="sub">Noted Irish watercolour artist &mdash; Athy, County Kildare</div>
+  </div>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#artist">The Artist</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#press">Press</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <h2>About Jim</h2>
+  <div class="about-grid">
+    <figure>
+      <img src="photos/jim-flack-portrait-smiling.jpg" alt="Portrait of James H. Flack smiling">
+      <figcaption>Jim Flack</figcaption>
+    </figure>
+    <div>
+      <p>The Rev. <strong>James Hall Flack</strong> &mdash; known to all as Jim &mdash; was a contemporary Irish watercolour painter. Born in County Armagh, he settled in Athy, County Kildare in the early 1970s, and the town and its surrounding countryside remained his home and his inspiration for the rest of his life.</p>
+      <p>Ordained to the Presbyterian ministry, Jim held the degrees of BA, BD, M.Th. and H.Dip.Ed. from Trinity College Dublin and Edinburgh University. He ministered at Athy, where his Service of Thanksgiving was held at Athy Presbyterian Church on 27 March 2018.</p>
+      <p>As an artist he was a member of the Water Colour Society of Ireland, the Ulster Watercolour Society, the Dublin Art Club and the Dublin Sketching Club. He exhibited widely in Ireland, Canada and the United States, and in 2000 received an Athy Urban District Council award for outstanding achievement in the arts.</p>
+      <p>His watercolours &mdash; quiet landscapes, woodlands, blossoms and skies rendered in soft, luminous washes &mdash; captured the gentle beauty of the Irish countryside he loved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE ARTIST ================= -->
+<section id="artist" class="centre">
+  <h2>The Artist</h2>
+  <div class="gallery">
+    <figure>
+      <img src="photos/memorial-portrait-1941-2018.jpg" alt="Service of Thanksgiving programme for the Rev. James Hall Flack">
+      <figcaption>Service of Thanksgiving programme, Athy Presbyterian Church, 27 March 2018</figcaption>
+    </figure>
+    <figure>
+      <img src="photos/jim-flack-portrait-suit.jpg" alt="Portrait of Jim Flack in a suit">
+      <figcaption>Portrait of Jim Flack</figcaption>
+    </figure>
+    <figure>
+      <img src="photos/jim-flack-holding-picture.jpg" alt="Jim Flack holding one of his paintings">
+      <figcaption>Jim holding one of his paintings</figcaption>
+    </figure>
+    <figure>
+      <img src="photos/jim-flack-exhibition-1.jpg" alt="Jim Flack at an exhibition">
+      <figcaption>At an exhibition</figcaption>
+    </figure>
+    <figure>
+      <img src="photos/jim-flack-exhibition-2.jpg" alt="Jim Flack at an exhibition">
+      <figcaption>At an exhibition</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="centre">
+  <h2>Gallery of Watercolours</h2>
+  <div class="gallery">
+    <figure><img src="photos/painting-grasses-daisies-butterfly.jpg" alt="Watercolour of grasses, daisies and a butterfly" loading="lazy"><figcaption>Grasses, daisies and a butterfly</figcaption></figure>
+    <figure><img src="photos/painting-pink-blossom.jpg" alt="Watercolour of pink blossom" loading="lazy"><figcaption>Pink blossom</figcaption></figure>
+    <figure><img src="photos/painting-woodland-path.jpg" alt="Watercolour of a woodland path" loading="lazy"><figcaption>Woodland path</figcaption></figure>
+    <figure><img src="photos/painting-cottage-landscape.jpg" alt="Watercolour of a cottage in the landscape" loading="lazy"><figcaption>Cottage in the landscape</figcaption></figure>
+    <figure><img src="photos/painting-sunset-over-water.jpg" alt="Watercolour of sunset over water" loading="lazy"><figcaption>Sunset over water</figcaption></figure>
+    <figure><img src="photos/painting-misty-sunrise.jpg" alt="Watercolour of a misty sunrise through trees" loading="lazy"><figcaption>Misty sunrise through the trees</figcaption></figure>
+    <figure><img src="photos/painting-misty-mountain-lake.jpg" alt="Watercolour of a mountain lake in the mist" loading="lazy"><figcaption>Mountain lake in the mist</figcaption></figure>
+    <figure><img src="photos/painting-bare-branches.jpg" alt="Watercolour of bare branches" loading="lazy"><figcaption>Bare branches</figcaption></figure>
+    <figure><img src="photos/painting-pine-trees.jpg" alt="Watercolour of pine trees" loading="lazy"><figcaption>Pine trees</figcaption></figure>
+    <figure><img src="photos/painting-sunset-sea.jpg" alt="Watercolour of sunset over the sea" loading="lazy"><figcaption>Sunset over the sea</figcaption></figure>
+    <figure><img src="photos/painting-autumn-woodland.jpg" alt="Watercolour of autumn woodland" loading="lazy"><figcaption>Autumn woodland</figcaption></figure>
+    <figure><img src="photos/painting-mushrooms.jpg" alt="Watercolour of mushrooms" loading="lazy"><figcaption>Mushrooms</figcaption></figure>
+    <figure><img src="photos/painting-pink-flowers-rocks.jpg" alt="Watercolour of pink flowers among rocks" loading="lazy"><figcaption>Pink flowers among rocks</figcaption></figure>
+    <figure><img src="photos/painting-tall-trees.jpg" alt="Watercolour of tall trees" loading="lazy"><figcaption>Tall trees</figcaption></figure>
+    <figure><img src="photos/painting-green-woodland.jpg" alt="Watercolour of green woodland" loading="lazy"><figcaption>Green woodland</figcaption></figure>
+    <figure><img src="photos/painting-cloudy-sky-landscape-1.jpg" alt="Watercolour landscape under a cloudy sky" loading="lazy"><figcaption>Landscape under a cloudy sky</figcaption></figure>
+    <figure><img src="photos/painting-cloudy-sky-landscape-2.jpg" alt="Watercolour of clouds over the countryside" loading="lazy"><figcaption>Clouds over the countryside</figcaption></figure>
+    <figure><img src="photos/jim-flack-cover-photo-bog-landscape.jpg" alt="Watercolour of a bog landscape under a cloudy sky" loading="lazy"><figcaption>Bog landscape under a cloudy sky</figcaption></figure>
+  </div>
+  <p class="note">The captions above are descriptive only &mdash; the original titles of most works are not recorded. Click any image to view it full-screen.</p>
+</section>
+
+<!-- ================= PRESS ================= -->
+<section id="press" class="centre">
+  <h2>Press &amp; Articles</h2>
+  <p style="text-align:center">Newspaper and magazine features on Jim and his work, preserved from the memorial collection.</p>
+  <div class="press-grid" style="text-align:left">
+    <figure><img src="photos/obituary-article-1.jpg" alt="Obituary article, page 1" loading="lazy"><figcaption>Obituary &mdash; page 1</figcaption></figure>
+    <figure><img src="photos/obituary-article-2.jpg" alt="Obituary article, page 2" loading="lazy"><figcaption>Obituary &mdash; page 2</figcaption></figure>
+    <figure><img src="photos/article-watercolourist-looks-at-ireland.jpg" alt="Article: A watercolourist looks at Ireland" loading="lazy"><figcaption>&ldquo;A watercolourist looks at Ireland&rdquo;</figcaption></figure>
+    <figure><img src="photos/magazine-page-paintings.jpg" alt="Magazine feature showing Jim's paintings" loading="lazy"><figcaption>Magazine feature</figcaption></figure>
+    <figure><img src="photos/article-page-four-paintings.jpg" alt="Article page with four paintings" loading="lazy"><figcaption>Article with four paintings</figcaption></figure>
+  </div>
+
+  <h2 style="margin-top:2.5rem">Archived Articles</h2>
+  <p style="text-align:center">Key web articles about Jim, preserved here as PDFs so they survive even as the original sites disappear.</p>
+  <ul class="pdf-list" style="text-align:left">
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/kildarenet-news-june-2000.pdf">KildareNet News &mdash; week ending 3 June 2000</a><span>Report on Jim&rsquo;s Athy exhibition, opened by Michael D. Higgins</span></div></li>
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/dublin-painting-sketching-club-bio.pdf">Dublin Painting and Sketching Club &mdash; member biography</a><span>Biographical note on James H. Flack</span></div></li>
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/almond-tree-gallery-artists.pdf">Almond Tree Gallery &mdash; artists page</a><span>Gallery biography of Jim Flack</span></div></li>
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/frank-lewis-gallery-flack.pdf">Frank Lewis Gallery &mdash; artist page</a><span>Exhibition listings including Spring 2011, Christmas 2010 and May Flowers 2010</span></div></li>
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/frank-lewis-style-description.pdf">Frank Lewis on Jim&rsquo;s style &mdash; &ldquo;May Flowers&rdquo; 2010</a><span>&ldquo;His subjects tend to be the smaller flowers. Flack focuses in on his subject emphasising what we miss&hellip;&rdquo;</span></div></li>
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/kildare-town-exhibition-listing.pdf">Exhibition listing &mdash; Athy Heritage Centre, 28 April to 12 May 2006</a><span>James H. Flack exhibition details</span></div></li>
+    <li><span class="pdf-icon">&#128196;</span><div><a href="articles/kinsale-art-gallery-dunloe.pdf">Kinsale Art Gallery &mdash; &ldquo;Mountain river, Gap of Dunloe&rdquo;</a><span>Watercolour, 22 &times; 8</span></div></li>
+  </ul>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section id="sources">
+  <h2>Sources &amp; Links</h2>
+  <div class="sources">
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/James_H._Flack">Wikipedia &mdash; James H. Flack</a></li>
+      <li><a href="https://www.facebook.com/JamesHFlack">Facebook memorial page &mdash; James H. Flack</a></li>
+      <li><a href="https://web.archive.org/web/20160303221738/http://www.dublinpaintingandsketchingclub.ie/JamesHFlack.html">Dublin Painting and Sketching Club biography</a> (via the Wayback Machine; original page no longer online)</li>
+      <li><a href="https://web.archive.org/web/20110408080452/http://www.franklewisgallery.com/flg/content/james-h-flack-0">Frank Lewis Gallery &mdash; James H. Flack</a> (via the Wayback Machine)</li>
+      <li><a href="https://web.archive.org/web/20110408053319/http://www.franklewisgallery.com/flg/style/%5Bcatpath%5D/00120-may-flowers-2010-julie-beckett-helene-brunicardi-vicki-crowley-james-h-flack-g">Frank Lewis Gallery &mdash; description of Jim&rsquo;s style</a> (via the Wayback Machine)</li>
+      <li><a href="https://web.archive.org/web/20110721125109/http://kinsale-art-gallery.ie/?gal=108&amp;opt=gal&amp;id=Dscn0159.jpg&amp;ind=1&amp;email=1">Kinsale Art Gallery &mdash; &ldquo;Mountain river, Gap of Dunloe&rdquo;</a> (via the Wayback Machine)</li>
+      <li class="dead">Kildare Artists page and the Kildare Nationalist article of 8 June 2001 are noted here for the record; the originals are offline and no archived copies are known to survive.</li>
+    </ul>
+    <p class="note">Biographical details on this page are drawn from the Wikipedia article and the archived sources above. Photographs are from the family memorial collection.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="ded">In loving memory of Jim &mdash; artist, minister, and godfather.</div>
+  <div>This memorial page was prepared with love by his godson.<br>
+  <a href="https://en.wikipedia.org/wiki/James_H._Flack">Wikipedia</a> &middot;
+  <a href="https://www.facebook.com/JamesHFlack">Facebook memorial page</a></div>
+</footer>
+
+<div id="lightbox"><img src="" alt=""><p></p></div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lightbox'),
+      lbImg=lb.querySelector('img'),
+      lbCap=lb.querySelector('p');
+  document.querySelectorAll('.gallery figure, .press-grid figure').forEach(function(fig){
+    fig.addEventListener('click',function(){
+      var img=fig.querySelector('img'),
+          cap=fig.querySelector('figcaption');
+      lbImg.src=img.src;
+      lbImg.alt=img.alt;
+      lbCap.textContent=cap?cap.textContent:'';
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    });
+  });
+  lb.addEventListener('click',function(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){lb.classList.remove('open');document.body.style.overflow='';}
+  });
+})();
+</script>
+
+</body>
+</html>
