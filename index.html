@@ -126,6 +126,7 @@
     margin-top:.5rem;text-align:center;
   }
   @media(max-width:720px){.about-grid{grid-template-columns:1fr}.about-grid figure{max-width:320px;margin:0 auto}}
+  .about-grid figure{cursor:zoom-in}
   /* ---------- galleries ---------- */
   .gallery{
     display:grid;
@@ -333,24 +334,41 @@
 (function(){
   var lb=document.getElementById('lightbox'),
       lbImg=lb.querySelector('img'),
-      lbCap=lb.querySelector('p');
-  document.querySelectorAll('.gallery figure, .press-grid figure').forEach(function(fig){
+      lbCap=lb.querySelector('p'),
+      pushed=false;
+
+  function openLb(img,cap){
+    lbImg.src=img.src;
+    lbImg.alt=img.alt;
+    lbCap.textContent=cap?cap.textContent:'';
+    if(!lb.classList.contains('open')){
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+      /* add a history entry so the Back button closes the viewer instead of leaving the page */
+      try{ history.pushState({lightbox:true},''); pushed=true; }catch(e){}
+    }
+  }
+  function closeLb(fromBackButton){
+    if(!lb.classList.contains('open')) return;
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    if(pushed && !fromBackButton){ pushed=false; history.back(); }
+    else { pushed=false; }
+  }
+  /* gallery, press clippings and the About portrait are all clickable */
+  document.querySelectorAll('.gallery figure, .press-grid figure, .about-grid figure').forEach(function(fig){
     fig.addEventListener('click',function(){
       var img=fig.querySelector('img'),
           cap=fig.querySelector('figcaption');
-      lbImg.src=img.src;
-      lbImg.alt=img.alt;
-      lbCap.textContent=cap?cap.textContent:'';
-      lb.classList.add('open');
-      document.body.style.overflow='hidden';
+      openLb(img,cap);
     });
   });
-  lb.addEventListener('click',function(){
-    lb.classList.remove('open');
-    document.body.style.overflow='';
-  });
+  lb.addEventListener('click',function(){ closeLb(false); });
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){lb.classList.remove('open');document.body.style.overflow='';}
+    if(e.key==='Escape'){ closeLb(false); }
+  });
+  window.addEventListener('popstate',function(){
+    if(lb.classList.contains('open')){ closeLb(true); }
   });
 })();
 </script>
