@@ -184,11 +184,11 @@
     flex-direction:column;cursor:zoom-out;
   }
   #lightbox.open{display:flex}
-  #lightbox img{max-width:94vw;max-height:86vh;object-fit:contain;border:8px solid #fff;border-radius:2px}
+  #lightbox img{max-width:94vw;max-height:86vh;object-fit:contain;border:8px solid #fff;border-radius:2px;cursor:zoom-in}
   #lightbox p{color:#e8e2d4;margin-top:.9rem;font-style:italic;font-size:.95rem;text-align:center;padding:0 1rem}
   /* zoomed view: image grows to a real pixel size and the viewer scrolls so you can pan around it */
   #lightbox.open.zoomed{display:block;overflow:auto;cursor:default}
-  #lightbox.zoomed img{max-width:none;max-height:none;height:auto;display:block;margin:3.4rem auto .5rem;cursor:grab}
+  #lightbox.zoomed img{max-width:none;max-height:none;height:auto;display:block;margin:3.4rem auto .5rem;cursor:zoom-in}
   /* magnifier button, visible only while the lightbox is open */
   #zoomBtn{
     display:none;position:fixed;top:.9rem;right:.9rem;z-index:101;
@@ -290,7 +290,7 @@
     <figure><img src="photos/painting-green-woodland.jpg" alt="Watercolour of green woodland" loading="lazy"><figcaption>Green woodland</figcaption></figure>
     <figure><img src="photos/painting-cloudy-sky-landscape-1.jpg" alt="Watercolour landscape under a cloudy sky" loading="lazy"><figcaption>Landscape under a cloudy sky</figcaption></figure>
   </div>
-  <p class="note">The captions above are descriptive only &mdash; the original titles of most works are not recorded. Click any image to view it full-screen.</p>
+  <p class="note">The captions above are descriptive only &mdash; the original titles of most works are not recorded. Click any image to view it larger &mdash; then click the picture itself to zoom in, up to 3&times;.</p>
 </section>
 
 <!-- ================= PRESS ================= -->
@@ -398,8 +398,8 @@
       openLb(img,cap);
     });
   });
-  zoomBtn.addEventListener('click',function(e){
-    e.stopPropagation(); /* the magnifier must not close the viewer */
+  /* one zoom step forward: original -> 1.5x -> 2.25x -> 3x -> original */
+  function advanceZoom(){
     var next=(zi+1)%ZOOMS.length;
     if(next>0){
       var w=baseW||lbImg.clientWidth||lbImg.naturalWidth||0;
@@ -408,10 +408,25 @@
     }
     zi=next;
     applyZoom();
+  }
+  zoomBtn.addEventListener('click',function(e){
+    e.stopPropagation(); /* the magnifier must not close the viewer */
+    advanceZoom();
   });
+  /* clicking the picture itself zooms, so nobody has to find the magnifier button.
+     A real drag (panning the zoomed picture) must not trigger a zoom step. */
+  var downX=null,downY=null;
+  lbImg.addEventListener('mousedown',function(e){ downX=e.clientX; downY=e.clientY; });
   lb.addEventListener('click',function(e){
-    if(e.target===lbImg && zi>0){ return; } /* let them scroll/pan the zoomed picture */
-    closeLb(false);
+    if(e.target===lbImg){
+      if(downX!==null && (Math.abs(e.clientX-downX)>6||Math.abs(e.clientY-downY)>6)){
+        downX=downY=null; return; /* it was a drag, not a click */
+      }
+      downX=downY=null;
+      advanceZoom();
+      return;
+    }
+    closeLb(false); /* dark background (or caption) still closes the viewer */
   });
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){ closeLb(false); }
