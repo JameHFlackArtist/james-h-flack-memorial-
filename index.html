@@ -16,6 +16,24 @@
     --accent:#3f5a4c;
     --accent-light:#e9efe9;
     --line:#ddd3c0;
+    --card:#fff;
+    --img-bg:#eee;
+    color-scheme:light;
+  }
+  /* dark mode: follows the browser / operating-system setting */
+  @media (prefers-color-scheme: dark){
+    :root{
+      color-scheme:dark;
+      --paper:#201d19;
+      --ink:#e9e3d5;
+      --soft:#ada294;
+      --accent:#93b8a4;
+      --accent-light:#2b332d;
+      --line:#3e382e;
+      --card:#2b2823;
+      --img-bg:#35322b;
+    }
+    nav{background:rgba(32,29,25,.96)}
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
@@ -119,7 +137,7 @@
   .about-grid img{
     width:100%;border-radius:4px;
     box-shadow:0 6px 24px rgba(0,0,0,.18);
-    border:6px solid #fff;
+    border:6px solid var(--card);
   }
   .about-grid figcaption{
     font-size:.85rem;color:var(--soft);font-style:italic;
@@ -134,7 +152,7 @@
     gap:1.1rem;
   }
   .gallery figure{
-    background:#fff;
+    background:var(--card);
     border:1px solid var(--line);
     border-radius:4px;
     overflow:hidden;
@@ -146,7 +164,7 @@
   .gallery.centered{display:flex;flex-wrap:wrap;justify-content:center}
   .gallery.centered figure{flex:1 1 230px}
   @media(min-width:1000px){.gallery.centered figure{max-width:calc((100% - 3.3rem)/4)}}
-  .gallery img{width:100%;height:200px;object-fit:cover;display:block;background:#eee}
+  .gallery img{width:100%;height:200px;object-fit:cover;display:block;background:var(--img-bg)}
   .gallery figcaption{
     padding:.6rem .8rem;
     font-size:.88rem;color:var(--soft);font-style:italic;
@@ -159,13 +177,13 @@
     gap:1.1rem;margin-bottom:2rem;
   }
   .press-grid figure{
-    background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;cursor:zoom-in;
+    background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;cursor:zoom-in;
   }
-  .press-grid img{width:100%;height:340px;object-fit:cover;object-position:top;display:block;background:#eee}
+  .press-grid img{width:100%;height:340px;object-fit:cover;object-position:top;display:block;background:var(--img-bg)}
   .press-grid figcaption{padding:.6rem .8rem;font-size:.88rem;color:var(--soft);font-style:italic}
   .pdf-list{list-style:none;max-width:760px;margin:0 auto}
   .pdf-list li{
-    background:#fff;border:1px solid var(--line);border-radius:4px;
+    background:var(--card);border:1px solid var(--line);border-radius:4px;
     margin-bottom:.7rem;padding:.85rem 1.1rem;
     display:flex;gap:.9rem;align-items:baseline;
   }
